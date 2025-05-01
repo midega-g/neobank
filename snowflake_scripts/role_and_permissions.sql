@@ -1,0 +1,16 @@
+CREATE WAREHOUSE IF NOT EXISTS neobank_wh WITH WAREHOUSE_SIZE = 'XSMALL';
+CREATE DATABASE IF NOT EXISTS neobank_db;
+CREATE ROLE IF NOT EXISTS neobank_role;
+
+-- Permission Grant
+GRANT USAGE ON WAREHOUSE neobank_wh TO ROLE neobank_role;
+GRANT ALL ON DATABASE neobank_db TO ROLE neobank_role;
+GRANT ROLE neobank_role TO USER midega;
+
+USE WAREHOUSE neobank_wh;
+USE ROLE neobank_role;
+USE DATABASE neobank_db;
+
+CREATE OR REPLACE SCHEMA bronze;
+CREATE OR REPLACE SCHEMA silver;
+CREATE OR REPLACE SCHEMA gold;
