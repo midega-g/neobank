@@ -1,0 +1,12 @@
+.qodo
+.venv
+.env
+
+logs/
+
+
+check.*
+customer_data_11308.csv
+customer_data.csv
+
+snowflake.log
