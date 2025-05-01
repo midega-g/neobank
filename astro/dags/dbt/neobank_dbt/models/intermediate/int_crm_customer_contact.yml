@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: int_crm_customer_contact
+    description: Staging model for customer contact information with cleaning and validation
+    columns:
+      - name: contact_id
+        description: Unique contact identifier
+        data_type: varchar(12)
+        tests:
+          - not_null
+          - unique
+          - check_id_length:
+              id_length: 12
+      - name: email
+        description: Customer's email address (validated, can be null)
+        data_type: varchar(255)
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: "IS NULL OR email RLIKE '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$'"
+      - name: phone_number
+        description: Customer's phone number starting with '+' (13 characters, can be null)
+        data_type: varchar(13)
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: "IS NOT NULL OR phone_number NOT RLIKE '^\\+[0-9]{12}$' AND LENGTH(phone_number) != 13"
+      - name: notification_channel
+        description: Preferred notification channel (In-App, Push Notification, Email, SMS)
+        data_type: varchar(20)
+        tests:
+          - accepted_values:
+              values: ["In-App", "Push Notification", "Email", "SMS"]
+      - name: account_creation_date
+        description: Date the contact account was created (between 2024-01-01 and current date)
+        data_type: timestamp
+        tests:
+          - check_date_range
+      - name: dwh_creation_date
+        description: Timestamp when the record was created in the DWH
+        data_type: timestamp
+        tests:
+          - not_null

@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: int_crm_customer_address
+    description: Staging model for customer address information with basic cleaning
+    columns:
+      - name: address_id
+        description: Unique identifier for customer address
+        data_type: varchar(12)
+        tests:
+          - not_null
+          - unique
+          - check_id_length:
+              id_length: 12
+      - name: street_address
+        description: Street location of customer
+        data_type: varchar(50)
+      - name: city
+        description: City where customer is located
+        data_type: varchar(20)
+      - name: country
+        description: Country residence of customer
+        data_type: varchar(10)
+        tests:
+          - accepted_values:
+              values: ["Kenya", "Uganda", "Tanzania", "Rwanda"]
+      - name: account_creation_date
+        tests:
+          - check_date_range
+        description: Date account was created
+        data_type: timestamp

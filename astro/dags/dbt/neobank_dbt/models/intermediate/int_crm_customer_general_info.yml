@@ -1,0 +1,59 @@
+version: 2
+
+models:
+  - name: int_crm_customer_general_info
+    description: Staging model for customer general information with cleaning and standardization
+    columns:
+      - name: customer_id
+        description: Unique customer identifier
+        data_type: varchar(16)
+        tests:
+          - not_null
+          - unique
+          - check_id_length:
+              id_length: 12
+      - name: username
+        description: Customer's username
+        data_type: varchar(30)
+      - name: address_id
+        description: Identifier for customer's address
+        data_type: varchar(12)
+        tests:
+          - check_id_length:
+              id_length: 12
+      - name: contact_id
+        description: Identifier for customer's contact information
+        data_type: varchar(12)
+        tests:
+          - check_id_length:
+              id_length: 12
+      - name: first_name
+        description: Customer's first name
+        data_type: varchar(50)
+      - name: last_name
+        description: Customer's last name
+        data_type: varchar(50)
+      - name: gender
+        description: Standardized gender (Male, Female, Unknown)
+        data_type: varchar(10)
+        tests:
+          - accepted_values:
+              values: ["Male", "Female", "Unknown"]
+      - name: date_of_birth
+        description: Customer's date of birth (null if age < 18 or > 120)
+        data_type: timestamp
+        tests:
+          - check_age_validity
+      - name: preferred_language
+        description: Customer's preferred language
+        data_type: varchar(30)
+      - name: account_creation_date
+        description: Date the customer account was created
+        data_type: timestamp
+        tests:
+          - check_date_range
+      - name: dwh_creation_date
+        description: Timestamp when the record was created in the DWH
+        data_type: timestamp
+        tests:
+          - not_null

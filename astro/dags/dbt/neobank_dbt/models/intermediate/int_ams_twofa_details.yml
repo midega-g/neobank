@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: int_ams_twofa_details
+    description: Staging model for 2FA details with cleaning and validation
+    columns:
+      - name: two_fa_id
+        description: Unique 2FA identifier (16 characters)
+        data_type: varchar(16)
+        tests:
+          - not_null
+          - unique
+          - check_id_length:
+              id_length: 16
+      - name: uses_2fa
+        description: Indicates if 2FA is used (True or False, can be null)
+        data_type: boolean
+        tests:
+          - accepted_values:
+              values: [True, False]
+              config:
+                where: "uses_2fa IS NOT NULL"
+      - name: two_fa_verified_at
+        description: Timestamp when 2FA was verified (between 2024-01-01 and current date, can be null)
+        data_type: timestamp
+        tests:
+          - check_date_range:
+              config:
+                where: "two_fa_verified_at IS NOT NULL"
+      - name: dwh_creation_date
+        description: Timestamp when the record was created in the DWH
+        data_type: timestamp
+        tests:
+          - not_null

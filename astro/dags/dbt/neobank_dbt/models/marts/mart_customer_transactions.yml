@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: mart_customer_transactions
+    description: Gold layer model combining customer and transaction information for analytics
+    columns:
+      - name: customer_id
+        description: Unique identifier for the customer
+        tests:
+          - not_null
+      - name: first_name
+        description: Customer's first name
+      - name: email
+        description: Customer's email address
+      - name: phone_number
+        description: Customer's phone number
+      - name: city
+        description: Customer's city
+      - name: country
+        description: Customer's country
+      - name: preferred_language
+        description: Customer's preferred language
+      - name: account_status
+        description: Status of the customer's account
+      - name: transaction_id
+        description: Unique identifier for the transaction
+        tests:
+          - not_null
+      - name: transaction_type
+        description: Type of transaction
+      - name: transaction_status
+        description: Status of the transaction
+      - name: account_balance
+        description: Current account balance
+      - name: transaction_amount
+        description: Amount of the transaction
+      - name: transaction_date
+        description: Date of the transaction
+        tests:
+          - not_null
+      - name: dwh_creation_date
+        description: Timestamp when the record was created in the DWH
+        tests:
+          - not_null

@@ -1,0 +1,88 @@
+version: 2
+
+models:
+  - name: int_tps_transaction
+    description: Staging model for transaction data with cleaning and validation
+    columns:
+      - name: transaction_id
+        description: Unique transaction identifier (12 characters)
+        data_type: varchar(12)
+        tests:
+          - not_null
+          - unique
+          - check_id_length:
+              id_length: 12
+      - name: customer_id
+        description: Customer identifier (12 characters, hyphens removed, can be null)
+        data_type: varchar(12)
+        tests:
+          - check_id_length:
+              id_length: 12
+              # config:
+              #   where: "customer_id IS NOT NULL"
+      - name: account_id
+        description: Account identifier (8 characters, can be null)
+        data_type: varchar(8)
+        tests:
+          - check_id_length:
+              id_length: 8
+              # config:
+              #   where: "account_id IS NOT NULL"
+      - name: transaction_sk
+        description: Transaction secret key (12 characters, can be null)
+        data_type: varchar(12)
+        tests:
+          - check_id_length:
+              id_length: 12
+              # config:
+              #   where: "transaction_sk IS NOT NULL"
+      - name: account_status_id
+        description: Account status identifier (16 characters, can be null)
+        data_type: varchar(16)
+        tests:
+          - check_id_length:
+              id_length: 16
+              # config:
+              #   where: "account_status_id IS NOT NULL"
+      - name: biometric_id
+        description: Biometric identifier (16 characters, can be null)
+        data_type: varchar(16)
+        tests:
+          - check_id_length:
+              id_length: 16
+              # config:
+              #   where: "biometric_id IS NOT NULL"
+      - name: two_fa_id
+        description: 2FA identifier (16 characters, can be null)
+        data_type: varchar(16)
+        tests:
+          - check_id_length:
+              id_length: 16
+              # config:
+              #   where: "two_fa_id IS NOT NULL"
+      - name: kyc_id
+        description: KYC identifier (16 characters, can be null)
+        data_type: varchar(16)
+        tests:
+          - check_id_length:
+              id_length: 16
+              # config:
+              #   where: "kyc_id IS NOT NULL"
+      - name: transaction_amount
+        description: Transaction amount (can be null)
+        data_type: decimal(18,2)
+      - name: account_balance
+        description: Account balance (can be null)
+        data_type: decimal(18,2)
+      - name: transaction_date
+        description: Timestamp of the transaction (between 2024-01-01 and current date, can be null)
+        data_type: timestamp
+        tests:
+          - check_date_range
+              # config:
+              #   where: "transaction_date IS NOT NULL"
+      - name: dwh_creation_date
+        description: Timestamp when the record was created in the DWH
+        data_type: timestamp
+        tests:
+          - not_null

@@ -1,0 +1,184 @@
+version: 2
+
+sources:
+  - name: bronze_source
+    database: neobank_db
+    schema: bronze
+    tables:
+      - name: crm_customer_address
+        description: Raw customer address data from CRM
+        columns:
+          - name: address_id
+            description: Raw address identifier
+            data_type: varchar
+          - name: street_address
+            description: Raw street address
+            data_type: varchar
+          - name: city
+            description: Raw city
+            data_type: varchar
+          - name: country
+            description: Raw country
+            data_type: varchar
+          - name: account_creation_date
+            description: Raw account creation date
+            data_type: timestamp
+      - name: crm_customer_general_info
+        description: Raw customer general information from CRM
+        columns:
+          - name: customer_id
+            description: Raw customer identifier
+            data_type: varchar
+          - name: username
+            description: Raw username
+            data_type: varchar
+          - name: address_id
+            description: Raw address identifier
+            data_type: varchar
+          - name: contact_id
+            description: Raw contact identifier
+            data_type: varchar
+          - name: first_name
+            description: Raw first name
+            data_type: varchar
+          - name: last_name
+            description: Raw last name
+            data_type: varchar
+          - name: gender
+            description: Raw gender
+            data_type: varchar
+          - name: date_of_birth
+            description: Raw date of birth
+            data_type: timestamp
+          - name: preferred_language
+            description: Raw preferred language code
+            data_type: varchar
+          - name: account_creation_date
+            description: Raw account creation date
+            data_type: timestamp
+      - name: crm_customer_contact
+        description: Raw customer contact information from CRM
+        columns:
+          - name: contact_id
+            description: Raw contact identifier
+            data_type: varchar
+          - name: email
+            description: Raw email address
+            data_type: varchar
+          - name: phone_number
+            description: Raw phone number
+            data_type: varchar
+          - name: notification_channel
+            description: Raw notification channel
+            data_type: varchar
+          - name: account_creation_date
+            description: Raw account creation date
+            data_type: timestamp
+      - name: ams_account_status
+        description: Raw account status data from CRM
+        columns:
+          - name: account_status_id
+            description: Raw account status identifier
+            data_type: varchar
+          - name: account_status
+            description: Raw account status
+            data_type: varchar
+          - name: account_creation_date
+            description: Raw account creation date
+            data_type: timestamp
+      - name: ams_biometric_details
+        description: Raw biometric details data from AMS
+        columns:
+          - name: biometric_id
+            description: Raw biometric identifier
+            data_type: varchar
+          - name: uses_biometric
+            description: Raw biometric usage flag
+            data_type: varchar
+          - name: biometric_verified_at
+            description: Raw biometric verification timestamp
+            data_type: timestamp
+      - name: ams_kyc_details
+        description: Raw KYC details data from AMS
+        columns:
+          - name: kyc_id
+            description: Raw KYC identifier
+            data_type: varchar
+          - name: kyc_completed
+            description: Raw KYC completion flag
+            data_type: varchar
+          - name: kyc_verified_at
+            description: Raw KYC verification timestamp
+            data_type: timestamp
+      - name: ams_twofa_details
+        description: Raw 2FA details data from AMS
+        columns:
+          - name: two_fa_id
+            description: Raw 2FA identifier
+            data_type: varchar
+          - name: uses_2fa
+            description: Raw 2FA usage flag
+            data_type: varchar
+          - name: two_fa_verified_at
+            description: Raw 2FA verification timestamp
+            data_type: timestamp
+      - name: tps_transaction
+        description: Raw transaction data from TPS
+        columns:
+          - name: transaction_id
+            description: Raw transaction identifier
+            data_type: varchar
+          - name: customer_id
+            description: Raw customer identifier
+            data_type: varchar
+          - name: account_id
+            description: Raw account identifier
+            data_type: varchar
+          - name: transaction_sk
+            description: Raw transaction secret key
+            data_type: varchar
+          - name: account_status_id
+            description: Raw account status identifier
+            data_type: varchar
+          - name: biometric_id
+            description: Raw biometric identifier
+            data_type: varchar
+          - name: two_fa_id
+            description: Raw 2FA identifier
+            data_type: varchar
+          - name: kyc_id
+            description: Raw KYC identifier
+            data_type: varchar
+          - name: transaction_amount
+            description: Raw transaction amount
+            data_type: float
+          - name: account_balance
+            description: Raw account balance
+            data_type: float
+          - name: transaction_date
+            description: Raw transaction timestamp
+            data_type: timestamp
+      - name: tps_transaction_details
+        description: Raw transaction details data from TPS
+        columns:
+          - name: transaction_sk
+            description: Raw transaction secret key
+            data_type: varchar
+          - name: currency
+            description: Raw currency code
+            data_type: varchar
+          - name: transaction_type
+            description: Raw transaction type
+            data_type: varchar
+          - name: transaction_status
+            description: Raw transaction status
+            data_type: varchar
+          - name: topup_method
+            description: Raw topup method
+            data_type: varchar
+          - name: customer_id
+            description: Raw customer identifier
+            data_type: varchar
+          - name: transaction_date
+            description: Raw transaction timestamp
+            data_type: timestamp

@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: int_ams_account_status
+    description: Staging model for account status information with cleaning and validation
+    columns:
+      - name: account_status_id
+        description: Unique account status identifier (16 characters)
+        data_type: varchar(16)
+        tests:
+          - not_null
+          - unique
+          - check_id_length:
+              id_length: 16
+      - name: account_status
+        description: Account status (Active, Suspended, Closed)
+        data_type: varchar(10)
+        tests:
+          - accepted_values:
+              values: ['Active', 'Suspended', 'Closed']
+      - name: account_creation_date
+        description: Date the account was created (between 2024-01-01 and current date)
+        data_type: timestamp
+        tests:
+          - check_date_range
+      - name: dwh_creation_date
+        description: Timestamp when the record was created in the DWH
+        data_type: timestamp
+        tests:
+          - not_null
