@@ -149,11 +149,11 @@ Note: If you already have either of the above ports allocated, you can either [s
 
 ## More Details
 
-Ensure the Snowflake connection (snowflake_conn) is configured in Airflow.
-The neobank_dag DAG runs daily, executing the dbt project:
-dbt installs dependencies (from packages.yml).
-dbt runs models in sequence (staging → intermediate → marts).
-dbt applies tests defined in .yml files.
+- Ensure the Snowflake connection (`snowflake_conn`) is configured in Airflow.
+- The neobank_dag DAG runs daily, executing the dbt project:
+- dbt installs dependencies (from `packages.yml`).
+- dbt runs models in sequence (`staging` → `intermediate` → `marts`).
+- dbt applies tests defined in `.yml` files.
 
 Monitor the pipeline via the Airflow UI or dbt logs.
 

@@ -193,7 +193,7 @@ Run the load script:
 python snowflake_scripts/load_csv_to_snowflake.py
 ```
 
-For more information on how to configure Snowflake and load data into it, check the documentation [here]('./snowflake_scripts/README.md').
+For more information on how to configure Snowflake and load data into it, check the documentation [here](./snowflake_scripts/README.md).
 
 ### 6. Set Up dbt Project
 
@@ -325,7 +325,7 @@ cd astro
 astro dev init
 ```
 
-The `astro/` directory contains the Airflow setup, including `Dockerfile`, `requirements.txt`, and `dags/`. For more information on how to set up this, check the documentation [here]('./astro/README.md').
+The `astro/` directory contains the Airflow setup, including `Dockerfile`, `requirements.txt`, and `dags/`. For more information on how to set up this, check the documentation [here](./astro/README.md).
 
 ### 8. Run the Pipeline
 
@@ -361,6 +361,6 @@ DROP ROLE IF EXISTS neobank_role;
 
 For additional details, refer to the following documentation in this project:
 
-- [Astro & dbt]('./astro/README.md')
-- [Data generation]('./data_generation/README.md)
-- [Snowflake Setup]('./snowflake_scripts/README.md')
+- [Astro & dbt](./astro/README.md)
+- [Data generation](./data_generation/README.md)
+- [Snowflake Setup](./snowflake_scripts/README.md)
