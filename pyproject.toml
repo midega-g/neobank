@@ -1,0 +1,33 @@
+[tool.black]
+line-length = 88
+target-version = ['py311']
+skip-string-normalization = true
+
+[tool.pylint]
+
+[tool.pylint.format]
+max-line-length = 110
+
+[tool.pylint.messages_control]
+disable = [
+    "missing-function-docstring",
+    "missing-final-newline",
+    "missing-module-docstring",
+    "missing-class-docstring",
+    "invalid-name",
+    "no-member",
+    "too-few-public-methods",
+    "ungrouped-imports",
+    "import-error",
+    "pointless-statement",
+    "import-error",
+    "no-name-in-module",
+    "unused-argument",
+    "unspecified-encoding",
+    "no-else-raise",
+    "broad-exception-raised",
+    "too-many-locals",
+    "use-maxsplit-arg",
+    "too-many-arguments",
+    "broad-exception-caught"
+]
