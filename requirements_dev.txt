@@ -1,0 +1,4 @@
+-r requirements_core.txt
+Faker>=37.1.0
+pandas>=2.2.3
+ipykernel
